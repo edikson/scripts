@@ -21,7 +21,7 @@ sudo pip uninstall -y ipython_genutils
 sudo pip uninstall -y ipython
 sudo pip uninstall -y msgpack_python
 sudo pip uninstall -y pymysql
-sudo apt-get remove rabbitmq-server
-sudo apt-get remove redis
-sudo apt-get remove etcd
+sudo apt-get -y remove rabbitmq-server
+sudo apt-get -y remove redis
+sudo apt-get -y remove etcd
 
