@@ -1,0 +1,13 @@
+
+git stash
+git stash pop
+
+git log
+
+git reset --hard xxx
+
+git config --global user.email "test@example.com"
+
+git config --global user.name "test"
+
+git remote set-url origin ssh://yuli@review.openstack.org:29418/openstack/dragonflow
