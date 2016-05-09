@@ -1,0 +1,5 @@
+
+sudo ip netns list
+
+sudo ip netns exec qrouter-950d2b12-adf7-4a8e-9984-9ce509c462e4 iptables -t nat -L
+sudo ip netns exec qrouter-950d2b12-adf7-4a8e-9984-9ce509c462e4 netstat -napl
