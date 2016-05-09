@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Cleaning all openstack dependencies"
+
 pip search oslo | grep -B1 '^\s*INSTALLED' | grep '^o' | awk '{ print $1}' | xargs sudo pip uninstall -y
 pip search python- | grep -B1 '^\s*INSTALLED' | grep '^p' | awk '{ print $1}' | xargs sudo pip uninstall -y
 sudo pip uninstall -y oauth2client
