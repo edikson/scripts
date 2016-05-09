@@ -1,0 +1,11 @@
+
+neutron net-create my-ext-net --router:external True
+
+neutron subnet-create my-ext-net --name my-ext-subnet --allocation-pool start=10.100.201.200,end=10.100.201.200 --disable-dhcp --gateway 10.100.100.1 10.100.0.0/16
+
+Before creating fip, you need
+1) set the gateway into router. eg, neutron router-gateway-set router-demo ext-net;
+2) then create fip. eg, neutron floatingip-create ext-net;
+
+neutron subnet-update public --gateway_ip 10.100.100.8
+
