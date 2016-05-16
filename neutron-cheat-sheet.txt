@@ -14,4 +14,6 @@ Before creating fip, you need
 1) set the gateway into router. eg, neutron router-gateway-set router-demo ext-net;
 2) then create fip. eg, neutron floatingip-create ext-net;
 
+# as admin tenant
+neutron --os-cloud devstack-admin --os-region RegionOne router-create router1
 
