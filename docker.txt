@@ -1,0 +1,5 @@
+
+file: /etc/default/docker
+DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
+
+
