@@ -23,8 +23,10 @@ sudo pip uninstall -y msgpack_python
 sudo pip uninstall -y pymysql
 sudo pop uninstall -y keystoneauth1
 sudo pip uninstall -y keystonemiddleware
+sudo pip uninstall -y os-vif
 
 sudo apt-get -y remove rabbitmq-server
 sudo apt-get -y remove redis
 sudo apt-get -y remove etcd
+sudo apt-get -y remove rabbitmq-server memcached
 
