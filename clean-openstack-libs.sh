@@ -24,6 +24,8 @@ sudo pip uninstall -y pymysql
 sudo pop uninstall -y keystoneauth1
 sudo pip uninstall -y keystonemiddleware
 sudo pip uninstall -y os-vif
+sudo pip uninstall -y os-win
+sudo pip uninstall -y os-brick
 
 sudo apt-get -y remove rabbitmq-server
 sudo apt-get -y remove redis
