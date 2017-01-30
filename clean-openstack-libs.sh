@@ -30,13 +30,16 @@ sudo pip uninstall -y pyroute2
 sudo pip uninstall -y oslo.policy
 sudo pip uninstall -y tooz
 sudo pip uninstall -y XStatic-roboto-fontface
+sudo pip uninstall -y django-openstack-auth
+sudo pip uninstall -y django-openstack
+sudo pip uninstall -y django
 
 sudo apt-get -y remove rabbitmq-server
 sudo apt-get -y remove redis
 sudo apt-get -y remove etcd
 sudo apt-get -y remove rabbitmq-server memcached
-rm -rf /etc/neutron
-rm -rf /etc/cinder
-rm -rf /etc/keystone
-rm -rf /etc/glance
-
+sudo rm -rf /etc/neutron
+sudo rm -rf /etc/cinder
+sudo rm -rf /etc/keystone
+sudo rm -rf /etc/glance
+sudo rm -rf /etc/nova
