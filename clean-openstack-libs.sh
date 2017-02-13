@@ -33,6 +33,7 @@ sudo pip uninstall -y XStatic-roboto-fontface
 sudo pip uninstall -y django-openstack-auth
 sudo pip uninstall -y django-openstack
 sudo pip uninstall -y django
+sudo pip uninstall -y python-swiftclient
 
 sudo apt-get -y remove rabbitmq-server
 sudo apt-get -y remove redis
@@ -43,3 +44,5 @@ sudo rm -rf /etc/cinder
 sudo rm -rf /etc/keystone
 sudo rm -rf /etc/glance
 sudo rm -rf /etc/nova
+echo "You can run: "
+echo "sudo rm -rf /opt/stack/"
