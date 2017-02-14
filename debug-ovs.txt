@@ -1,0 +1,23 @@
+sudo tcpdump -i tap8290c0aa-40 -xx
+
+11:36:51.726415 IP 10.0.0.3.38246 > 10.0.0.4.ssh: Flags [S], seq 2857813333, win 14100, options [mss 1410,sackOK,TS val 73999 ecr 0,nop,wscale 3], length 0
+	0x0000:  fa16 3ef9 1d4e fa16 3e9d 36e0 0800 4500
+	0x0010:  003c e45a 4000 4006 425b 0a00 0003 0a00
+	0x0020:  0004 9566 0016 aa56 c555 0000 0000 a002
+	0x0030:  3714 1435 0000 0204 0582 0402 080a 0001
+	0x0040:  210f 0000 0000 0103 0303
+
+fa163ef91d4efa163e9d36e008004500003ce45a40004006425b0a0000030a00000495660016aa56c55500000000a002371414350000020405820402080a0001210f0000000001030303
+
+sudo ovs-appctl ofproto/trace br-int in_port=4 "fa163ef91d4efa163e9d36e008004500003ce45a40004006425b0a0000030a00000495660016aa56c55500000000a002371414350000020405820402080a0001210f0000000001030303"
+
+ cookie=0x0, duration=10489.375s, table=77, n_packets=123, n_bytes=20278, priority=65534,ct_state=-new+est-rel-inv+trk actions=goto_table:78
+ cookie=0x0, duration=10489.375s, table=77, n_packets=2, n_bytes=226, priority=65534,ct_state=-new-est+rel-inv+trk actions=goto_table:78
+ cookie=0x0, duration=10489.375s, table=77, n_packets=0, n_bytes=0, priority=65534,ct_state=+inv+trk actions=drop
+ cookie=0x0, duration=7416.740s, table=77, n_packets=9, n_bytes=690, priority=2,conj_id=0,ip actions=ct(commit,table=78,zone=NXM_NX_CT_ZONE[])
+ cookie=0x0, duration=7416.733s, table=77, n_packets=0, n_bytes=0, priority=2,ct_state=+new-est-rel-inv+trk,reg7=0x6 actions=conjunction(0,1/2)
+ cookie=0x0, duration=7381.882s, table=77, n_packets=0, n_bytes=0, priority=2,ct_state=+new-est-rel-inv+trk,reg7=0x7 actions=conjunction(0,1/2)
+ cookie=0x6, duration=70.991s, table=77, n_packets=0, n_bytes=0, priority=2,tcp,tp_dst=80 actions=conjunction(0,2/2)
+ cookie=0x0, duration=10489.375s, table=77, n_packets=0, n_bytes=0, priority=1 actions=drop
+
+
