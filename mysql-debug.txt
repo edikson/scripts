@@ -1,0 +1,9 @@
+SET GLOBAL general_log='ON';
+echo 'show global variables;' | mysql | grep log
+
+general_log_file
+SELECT @@global.sql_mode, @@session.sql_mode, @@sql_mode;
+
+SELECT @@global.sql_mode, @@session.sql_mode, @@sql_mode, @@global.general_log_file;
+
+SELECT @@global.general_log_file;

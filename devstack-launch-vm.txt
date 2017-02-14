@@ -1,0 +1,23 @@
+source ./openrc admin demo
+
+nova flavor-list
+openstack flavor list
+
+old: nova image-list
+new: glance image-list
+openstack image list
+
+neutron net-list
+
+openstack user list
+
+nova list
+show all running vms
+
+openstack host list
+# list fo cns
+
+#nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64-uec --nic net-id=3b212c6b-a0ce-475a-8297-7d012c2b4913 --security-group default test1
+
+
+nova boot --flavor m1.tiny --image cirros-0.3.4-x86_64-uec --nic net-name=private --security-group default test2
