@@ -3,3 +3,28 @@ file: /etc/default/docker
 DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
 
 
+sudo docker run -it -v /var/docker-shared:/shared --name df-controller dragonflow-contr bash
+
+# start & connect an old
+sudo docker start df-controller
+sudo docker attach df-controller
+
+BRNAME="br-int3"
+sudo ovs-vsctl --no-wait -- --may-exist add-br $BRNAME
+sudo ovs-vsctl --no-wait br-set-external-id $BRNAME bridge-id $BRNAME
+sudo ovs-vsctl --no-wait set bridge $BRNAME fail-mode=secure other-config:disable-in-band=true
+sudo ovs-vsctl --no-wait set-controller $BRNAME tcp:172.17.0.2:6633
+
+sudo ovs-vsctl add-br br-ex2
+sudo ovs-vsctl --no-wait -- --may-exist add-br br-ex2
+sudo ovs-vsctl br-set-external-id br-ex2 bridge-id br-ex2
+sudo ovs-vsctl set Bridge br-ex2 other_config:disable-in-band=true
+sudo ip addr show dev br-ex2
+sudo ip addr add 10.100.100.8/16 dev br-ex2
+sudo ip link set br-ex2 up
+sudo ip -6 addr add 2001:db8::2/64 dev br-ex2
+sudo ip -6 route replace fd6e:e2d2:7614::/64 via 2001:db8::3 dev br-ex2
+
+sudo socat unix-listen:/var/docker-shared/db.sock,fork unix-connect:/var/run/openvswitch/db.sock
+
+
