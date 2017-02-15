@@ -1,0 +1,51 @@
+redis-cli -h 172.17.0.2 -p 7000
+
+sh -c 'echo "* soft nofile 50000" >> /etc/security/limits.conf'
+sh -c 'echo "* hard nofile 50000" >> /etc/security/limits.conf'
+
+#redis delete all keys
+FLUSHALL
+#
+CLUSTER RESET HARD
+
+
+
+1470230177.176272 [0 172.26.107.200:33946] "PING"
+1470230177.179201 [0 172.26.107.200:33948] "SUBSCRIBE" "D"
+1470230177.179964 [0 172.26.107.200:33950] "KEYS" "{publisher.*}.*"
+
+
+class BaseParser(object):
+    EXCEPTION_CLASSES = {
+        'ERR': {
+            'max number of clients reached': ConnectionError
+        },
+        'EXECABORT': ExecAbortError,
+        'LOADING': BusyLoadingError,
+        'NOSCRIPT': NoScriptError,
+        'READONLY': ReadOnlyError,
+    }
+
+
+
+root@localhost:~# redis-cli -h 172.26.107.203 -p 6379
+172.26.107.203:6379> KEYS *
+(error) ERR max number of clients reached
+172.26.107.203:6379> 
+
+Also, what is the value of the maxclients config on your redis instance? You can get this using the command-line client like so:
+
+$ redis-cli -h your.redis.host.address -p 6379 config get maxclients
+1) "maxclients"
+2) "10000"
+
+172.26.107.201:6379> config get maxclients
+1) "maxclients"
+2) "4064"
+
+redis optimization
+http://shokunin.co/blog/2014/11/11/operational_redis.html
+
+
+Solution is set LimitNOFILE in section [Service] for /etc/systemd/system/multi-user.target.wants/redis-server.service.
+LimitNOFILE=65535
