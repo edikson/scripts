@@ -1,0 +1,56 @@
+
+rally task start samples/tasks/scenarios/nova/boot-and-delete.json 
+
+rally task report --out=report2.html --open
+
+
+rally --plugin-paths rally-jobs/plugins/ task start rally-jobs/dragonflow.yaml 
+
+HINTS:
+* To plot HTML graphics with this data, run:
+	rally task report 34356073-d21f-4897-8372-8c47a11b1ce1 --out output.html
+
+* To generate a JUnit report, run:
+	rally task report 34356073-d21f-4897-8372-8c47a11b1ce1 --junit --out output.xml
+
+* To get raw JSON output of task results, run:
+	rally task results 34356073-d21f-4897-8372-8c47a11b1ce1
+
+rally task results f1e252ef-b499-42eb-8fc9-97acba11cb32
+
+cd ~
+wget https://raw.githubusercontent.com/openstack/rally/master/install_rally.sh
+bash ./install_rally.sh --dbtype mysql --db-host 127.0.0.1 --db-name rally --db-user root --db-password devstack
+
+cp rally/samples/deployments/existing.json /home/stack/saturn.json
+vi /home/stack/saturn.json
+
+./rally deployment create --file=/home/stack/saturn.json --name=saturn
+./rally deployment check
+./bin/rally task start /home/stack/df1.yaml 
+
+
+
+Trends Report
+If same workload is run several times, some results of these runs can be compared. Compared metrics are ssuccess rate (percent of successful iterations) and statistics for durations.
+
+How to generate trends report
+Use command rally task trends with given tasks UUIDs and/or tasks results JSON files and the name of desired output file.
+
+Example:
+
+$ rally task trends --tasks 6f63d9ec-eecd-4696-8e9c-2ba065c68535 a5737eba-a204-43d6-a262-d5ea4b0065da --out trends.html
+
+./rally/bin/rally task detailed acc7437d-49b9-40f9-be38-3bc7093cec73
+./rally/bin/rally task results acc7437d-49b9-40f9-be38-3bc7093cec73
+
+
+./rally deployment create --file=/home/stack/saturn-raw.json --name=saturn30
+
+cp /home/stack/rally/samples/deployments/for_deploying_openstack_with_rally/devstack-in-existing-servers.json ~/saturn-raw.json 
+
+
+# generate json fromc onfig file
+cat local.conf | grep -v "\[" | grep "=" | grep -v "^#" | sed "s/^/      \"/" | sed "s/$/\",/" | sed "s/=/\": \"/" 
+
+

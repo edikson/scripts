@@ -1,0 +1,1 @@
+grep --exclude-dir=logs --exclude-dir=data
